@@ -2034,9 +2034,14 @@ MonoBehaviour:
   - CellType: 8
     Image: {fileID: 21304630, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
   - CellType: 9
-    Image: {fileID: 21306160, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+    Image: {fileID: 21304006, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
   - CellType: 10
+    Image: {fileID: 21301472, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  - CellType: 11
+    Image: {fileID: 21305790, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  - CellType: 12
     Image: {fileID: 21303766, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  Cells: []
 --- !u!1001 &1828406789
 Prefab:
   m_ObjectHideFlags: 0
