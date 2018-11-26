@@ -6,14 +6,7 @@ namespace Assets.Scripts
 
     public class Board : MonoBehaviour
     {
-        [System.Serializable]
-        public class ImageDictionary
-        {
-            public CellType CellType;
-            public Sprite Image;
-        }
-
-        public List<ImageDictionary> Images;
+        public List<DungeLikeHelper.ImageDictionary> Images;
 
         public Tile[] Tiles;
 
