@@ -10,6 +10,8 @@ namespace Assets.Scripts
 
         public static GameManager Instance { get; private set; }
 
+        public int Level = 1;
+
         public System.Random Random = new System.Random();
 
         private void Awake()
