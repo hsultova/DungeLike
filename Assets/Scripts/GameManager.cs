@@ -28,7 +28,6 @@ namespace Assets.Scripts
         void Start()
         {
             Board.InitializeBoard();
-            Player = new Player { Health = new Health { Value = 100 } };
         }
 
         // Update is called once per frame
