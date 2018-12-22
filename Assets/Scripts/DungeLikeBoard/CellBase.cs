@@ -10,6 +10,7 @@
         public CellType Type { get; set; }
 
         /// <summary>
+        /// Executes the specific cell action
         /// </summary>
         public virtual void DoAction()
         {

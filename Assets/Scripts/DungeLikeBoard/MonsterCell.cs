@@ -7,7 +7,8 @@ namespace Assets.Scripts
         private readonly Player _player = GameManager.Instance.Player;
         private readonly Monster _monster;
 
-        public TextMesh StatusText { get; set; }
+        public TextMesh HealthStatusText { get; set; }
+        public TextMesh AttackStatusText { get; set; }
 
         public MonsterCell()
         {
@@ -21,7 +22,8 @@ namespace Assets.Scripts
         /// </summary>
         public void UpdateStatusText()
         {
-            StatusText.text = _monster.Health.Value.ToString();
+            HealthStatusText.text = _monster.Health.Value.ToString();
+            AttackStatusText.text = _monster.Attack.Value.ToString();
         }
 
         public override void DoAction()

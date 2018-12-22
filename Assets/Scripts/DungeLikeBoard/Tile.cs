@@ -25,6 +25,7 @@ namespace Assets.Scripts
         public SpriteRenderer Content;
         public GameObject Foreground;
         public TextMesh HealthStatusText;
+        public TextMesh AttackStatusText;
 
         private CellBase _baseCell;
 
@@ -34,7 +35,10 @@ namespace Assets.Scripts
             {
                 Foreground.SetActive(false);
                 if (GetCellType() == CellType.Monster)
+                {
                     HealthStatusText.gameObject.SetActive(true);
+                    AttackStatusText.gameObject.SetActive(true);
+                }
             }
             else if(GetCellType() != CellType.Enter)
             {
@@ -43,6 +47,7 @@ namespace Assets.Scripts
                 {
                     Content.sprite = null;
                     HealthStatusText.gameObject.SetActive(false);
+                    AttackStatusText.gameObject.SetActive(false);
                     _baseCell = new CellBase();
                 }
             }
@@ -62,7 +67,8 @@ namespace Assets.Scripts
             {
                 var monsterCell = new MonsterCell();
                 _baseCell = monsterCell;
-                monsterCell.StatusText = HealthStatusText;
+                monsterCell.HealthStatusText = HealthStatusText;
+                monsterCell.AttackStatusText = AttackStatusText;
                 monsterCell.UpdateStatusText();
                 return;
             }
