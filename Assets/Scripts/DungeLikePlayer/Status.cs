@@ -2,11 +2,18 @@
 {
     public class Status
     {
-        public int Value { get; set; }
+        public Status(int value, int maximum, int minimum)
+        {
+            Value = value;
+            Maximum = maximum;
+            Minimum = minimum;
+        }
 
-        public int Maximum { get; set; }
+        public int Value { get; private set; }
 
-        public int Minimum { get; set; }
+        public int Maximum { get; private set; }
+
+        public int Minimum { get; private set; }
 
         public virtual void AddValue(int valueToAdd)
         {

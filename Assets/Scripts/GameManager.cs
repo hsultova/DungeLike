@@ -1,12 +1,13 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
     public class GameManager : MonoBehaviour
     {
         public Board Board;
-
         public Player Player;
+        public List<Sprite> MonsterImages;
 
         public static GameManager Instance { get; private set; }
 

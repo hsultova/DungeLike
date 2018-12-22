@@ -19,9 +19,9 @@ namespace Assets.Scripts
         void Start()
         {
             //TODO: Gets from charachter selection menu
-            Health = new Status { Value = 100, Maximum = 200, Minimum = 0};
-            Attack = new Status { Value = 1 , Maximum = 30, Minimum = 0 };
-            Mana = new Status { Value = 20 , Maximum = 30, Minimum = 0 };
+            Health = new Status(100, 200, 0);
+            Attack = new Status(3, 30, 0);
+            Mana = new Status(20, 30, 0);
 
             HealthText.text = Health.Value.ToString();
             AttackText.text = Attack.Value.ToString();

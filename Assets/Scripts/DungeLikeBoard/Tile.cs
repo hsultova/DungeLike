@@ -24,6 +24,7 @@ namespace Assets.Scripts
     {
         public SpriteRenderer Content;
         public GameObject Foreground;
+        public TextMesh HealthStatusText;
 
         private CellBase _baseCell;
 
@@ -32,14 +33,24 @@ namespace Assets.Scripts
             if (Foreground.activeSelf)
             {
                 Foreground.SetActive(false);
+                if (GetCellType() == CellType.Monster)
+                    HealthStatusText.gameObject.SetActive(true);
             }
             else if(GetCellType() != CellType.Enter)
             {
                 _baseCell.DoAction();
-                Content.sprite = null;
+                if(_baseCell.CanRemoveContent())
+                {
+                    Content.sprite = null;
+                    HealthStatusText.gameObject.SetActive(false);
+                    _baseCell = new CellBase();
+                }
             }
         }
 
+        /// <summary>
+        /// Sets the cell type. Each cell type is determined by chance.
+        /// </summary>
         internal void SetCellType()
         {
             if (HasChance(60, GameManager.Instance.Random))
@@ -49,7 +60,10 @@ namespace Assets.Scripts
             }
             if (HasChance(40, GameManager.Instance.Random))
             {
-                _baseCell = new MonsterCell();
+                var monsterCell = new MonsterCell();
+                _baseCell = monsterCell;
+                monsterCell.StatusText = HealthStatusText;
+                monsterCell.UpdateStatusText();
                 return;
             }
             if (HasChance(20, GameManager.Instance.Random))
@@ -92,6 +106,10 @@ namespace Assets.Scripts
             }
         }
 
+        /// <summary>
+        /// Gets type of the cell
+        /// </summary>
+        /// <returns></returns>
         internal CellType GetCellType()
         {
             return _baseCell.Type;
