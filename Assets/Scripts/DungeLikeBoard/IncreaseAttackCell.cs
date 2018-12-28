@@ -2,6 +2,8 @@
 {
     public class IncreaseAttackCell : CellBase
     {
+        private readonly Player _player = GameManager.Instance.Player;
+
         public IncreaseAttackCell()
         {
             Type = CellType.IncreaseAttack;
@@ -10,7 +12,10 @@
         public override void DoAction()
         {
             base.DoAction();
-            // TODO: Increase player attack
+            //Increase player attack
+            int attackForIncrease = 1;
+            _player.Attack.AddValue(attackForIncrease);
+            _player.AttackText.text = _player.Attack.Value.ToString();
         }
     }
 }

@@ -10,5 +10,12 @@ namespace Assets.Scripts
             public CellType CellType;
             public Sprite Image;
         }
+
+        [System.Serializable]
+        public class ImageValuePair
+        {
+            public int Value;
+            public Sprite Image;
+        }
     }
 }

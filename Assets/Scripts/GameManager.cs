@@ -8,6 +8,7 @@ namespace Assets.Scripts
         public Board Board;
         public Player Player;
         public List<Sprite> MonsterImages;
+        public List<DungeLikeHelper.ImageValuePair> MoneyImages;
 
         public static GameManager Instance { get; private set; }
 
