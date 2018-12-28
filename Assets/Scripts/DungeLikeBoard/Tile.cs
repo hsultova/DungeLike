@@ -1,4 +1,5 @@
-﻿using Assets.Scripts.DungeLikeBoard;
+﻿using System;
+using Assets.Scripts.DungeLikeBoard;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -29,11 +30,29 @@ namespace Assets.Scripts
 
         private CellBase _baseCell;
 
+        public bool IsOpen { get; set; }
+        public bool IsSelectable { get; set; }
+
+        /// <summary>
+        /// Callback invoked when a cell is selected
+        /// </summary>
+        public Action OpenCell;
+
         private void OnMouseDown()
         {
+            if (!IsSelectable)
+                return;
+
             if (Foreground.activeSelf)
             {
                 Foreground.SetActive(false);
+                IsOpen = true;
+
+                if(OpenCell != null)
+                {
+                    OpenCell.Invoke();
+                }
+
                 if (GetCellType() == CellType.Monster)
                 {
                     HealthStatusText.gameObject.SetActive(true);
