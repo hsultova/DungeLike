@@ -6,24 +6,25 @@ namespace Assets.Scripts
     {
         private readonly Player _player = GameManager.Instance.Player;
         private readonly Monster _monster;
+        private Tile _tile;
 
-        public TextMesh HealthStatusText { get; set; }
-        public TextMesh AttackStatusText { get; set; }
-
-        public MonsterCell()
+        public MonsterCell(Tile tile)
         {
             _monster = new Monster();
+            _tile = tile;
             Type = CellType.Monster;
             GameManager.Instance.Board.Images.Find(pair => pair.CellType.Equals(Type)).Image = _monster.Visual;
         }
 
-        /// <summary>
-        /// Updates the text of all statuses
-        /// </summary>
-        public void UpdateStatusText()
+        public override void UpdateStatusText()
         {
-            HealthStatusText.text = _monster.Health.Value.ToString();
-            AttackStatusText.text = _monster.Attack.Value.ToString();
+            _tile.HealthStatusText.text = _monster.Health.Value.ToString();
+            _tile.AttackStatusText.text = _monster.Attack.Value.ToString();
+            if(_tile.IsOpen)
+            {
+                _tile.HealthStatusText.gameObject.SetActive(true);
+                _tile.AttackStatusText.gameObject.SetActive(true);
+            }
         }
 
         public override void DoAction()

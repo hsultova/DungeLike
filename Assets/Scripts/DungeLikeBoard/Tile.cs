@@ -28,6 +28,9 @@ namespace Assets.Scripts
         public GameObject Locked;
         public TextMesh HealthStatusText;
         public TextMesh AttackStatusText;
+        public TextMesh MoneyToAddText;
+        public TextMesh HealthToAddText;
+        public TextMesh ManaToAddText;
 
         private CellBase _baseCell;
 
@@ -56,11 +59,7 @@ namespace Assets.Scripts
                     OpenCell.Invoke(this);
                 }
 
-                if (GetCellType() == CellType.Monster)
-                {
-                    HealthStatusText.gameObject.SetActive(true);
-                    AttackStatusText.gameObject.SetActive(true);
-                }
+                _baseCell.UpdateStatusText();
             }
             else if (GetCellType() != CellType.Enter)
             {
@@ -96,16 +95,14 @@ namespace Assets.Scripts
             }
             if (HasChance(40, GameManager.Instance.Random))
             {
-                var monsterCell = new MonsterCell();
+                var monsterCell = new MonsterCell(this);
                 _baseCell = monsterCell;
-                monsterCell.HealthStatusText = HealthStatusText;
-                monsterCell.AttackStatusText = AttackStatusText;
                 monsterCell.UpdateStatusText();
                 return;
             }
             if (HasChance(20, GameManager.Instance.Random))
             {
-                _baseCell = new HealthPotionCell();
+                _baseCell = new MoneyCell(this);
                 return;
             }
             if (HasChance(10, GameManager.Instance.Random))
@@ -120,7 +117,7 @@ namespace Assets.Scripts
             }
             if (HasChance(20, GameManager.Instance.Random))
             {
-                _baseCell = new ManaPotionCell();
+                _baseCell = new ManaPotionCell(this);
                 return;
             }
             if (HasChance(30, GameManager.Instance.Random))
@@ -139,7 +136,7 @@ namespace Assets.Scripts
             }
             else
             {
-                _baseCell = new MoneyCell();
+                _baseCell = new HealthPotionCell(this);
             }
         }
 

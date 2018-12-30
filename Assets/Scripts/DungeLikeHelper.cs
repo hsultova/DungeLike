@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 
 namespace Assets.Scripts
 {
@@ -16,6 +17,16 @@ namespace Assets.Scripts
         {
             public int Value;
             public Sprite Image;
+        }
+
+        /// <summary>
+        /// Shows GameObject for seconds
+        /// </summary>
+        public static IEnumerator ShowForSeconds(GameObject gameObject)
+        {
+            gameObject.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            gameObject.SetActive(false);
         }
     }
 }

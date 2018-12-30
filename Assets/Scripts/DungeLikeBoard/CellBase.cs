@@ -18,6 +18,11 @@
         }
 
         /// <summary>
+        /// Updates the text of all statuses
+        /// </summary>
+        public virtual void UpdateStatusText() { }
+
+        /// <summary>
         /// Determines if the cell content can be removed such as sprite, text...
         /// Default state is that the content can be removed.
         /// </summary>
