@@ -47,12 +47,49 @@ namespace Assets.Scripts
                 tile.SetCellType();
                 tile.Content.sprite = Images.Find(pair => pair.CellType.Equals(tile.GetCellType())).Image;
                 tile.OpenCell += OnOpenCell;
+                tile.UnlockCells += OnUnlockCells;
+            }
+        }
+
+        /// <summary>
+        /// Validate board
+        /// </summary>
+        public void Validate()
+        {
+            foreach (var tile in Tiles)
+            {
+                //Lock cells around open monsters
+                if (tile.GetCellType() == CellType.Monster && tile.IsOpen)
+                {
+                    LockCell(tile.transform.position, Vector3.up);
+                    LockCell(tile.transform.position, Vector3.down);
+                    LockCell(tile.transform.position, Vector3.right);
+                    LockCell(tile.transform.position, Vector3.left);
+                    LockCell(tile.transform.position, Vector3.left + Vector3.down);
+                    LockCell(tile.transform.position, Vector3.left + Vector3.up);
+                    LockCell(tile.transform.position, Vector3.right + Vector3.down);
+                    LockCell(tile.transform.position, Vector3.right + Vector3.up);
+                }
             }
         }
 
         private void OnOpenCell()
         {
             SetSelectableCells();
+        }
+
+        private void OnUnlockCells(Tile tile)
+        {
+            if (tile.GetCellType() != CellType.Monster)
+                return;
+            UnlockCell(tile.transform.position, Vector3.up);
+            UnlockCell(tile.transform.position, Vector3.down);
+            UnlockCell(tile.transform.position, Vector3.right);
+            UnlockCell(tile.transform.position, Vector3.left);
+            UnlockCell(tile.transform.position, Vector3.left + Vector3.down);
+            UnlockCell(tile.transform.position, Vector3.left + Vector3.up);
+            UnlockCell(tile.transform.position, Vector3.right + Vector3.down);
+            UnlockCell(tile.transform.position, Vector3.right + Vector3.up);
         }
 
         /// <summary>
@@ -74,19 +111,51 @@ namespace Assets.Scripts
 
         private void SetSelectableCell(Vector3 position, Vector3 direction)
         {
-            RaycastHit hit;
-            Physics.Raycast(position, direction, out hit, 2);
+            Tile tile = GetNeighbourTile(position, direction);
 
-            if (hit.collider != null)
+            if (tile == null)
+                return;
+
+            if (!tile.IsLocked)
             {
-                Tile tile = hit.collider.gameObject.GetComponent<Tile>();
-
-                if (tile == null)
-                    return;
-
                 tile.IsSelectable = true;
                 tile.Foreground.GetComponent<SpriteRenderer>().color = Color.white;
             }
+        }
+
+        private void LockCell(Vector3 position, Vector3 direction)
+        {
+            Tile tile = GetNeighbourTile(position, direction);
+            if (tile == null || tile.IsOpen)
+                return;
+
+            tile.IsLocked = true;
+            if (tile.GetCellType() != CellType.Enter)
+                tile.Locked.SetActive(true);
+        }
+
+        private void UnlockCell(Vector3 position, Vector3 direction)
+        {
+            Tile tile = GetNeighbourTile(position, direction);
+            if (tile == null || tile.IsOpen)
+                return;
+
+            tile.IsLocked = false;
+            if (tile.GetCellType() != CellType.Enter)
+                tile.Locked.SetActive(false);
+        }
+
+        private Tile GetNeighbourTile(Vector3 position, Vector3 direction)
+        {
+            RaycastHit hit;
+            Physics.Raycast(position, direction, out hit, 2);
+
+            Tile tile = null;
+            if (hit.collider != null)
+            {
+                tile = hit.collider.gameObject.GetComponent<Tile>();
+            }
+            return tile;
         }
     }
 }

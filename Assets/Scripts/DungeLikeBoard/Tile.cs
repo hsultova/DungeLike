@@ -25,6 +25,7 @@ namespace Assets.Scripts
     {
         public SpriteRenderer Content;
         public GameObject Foreground;
+        public GameObject Locked;
         public TextMesh HealthStatusText;
         public TextMesh AttackStatusText;
 
@@ -32,15 +33,17 @@ namespace Assets.Scripts
 
         public bool IsOpen { get; set; }
         public bool IsSelectable { get; set; }
+        public bool IsLocked { get; set; }
 
         /// <summary>
         /// Callback invoked when a cell is selected
         /// </summary>
         public Action OpenCell;
+        public Action<Tile> UnlockCells;
 
         private void OnMouseDown()
         {
-            if (!IsSelectable)
+            if (!IsSelectable || IsLocked)
                 return;
 
             if (Foreground.activeSelf)
@@ -48,7 +51,7 @@ namespace Assets.Scripts
                 Foreground.SetActive(false);
                 IsOpen = true;
 
-                if(OpenCell != null)
+                if (OpenCell != null)
                 {
                     OpenCell.Invoke();
                 }
@@ -59,17 +62,26 @@ namespace Assets.Scripts
                     AttackStatusText.gameObject.SetActive(true);
                 }
             }
-            else if(GetCellType() != CellType.Enter)
+            else if (GetCellType() != CellType.Enter)
             {
                 _baseCell.DoAction();
-                if(_baseCell.CanRemoveContent())
+                if (_baseCell.CanRemoveContent())
                 {
+                    if (GetCellType() == CellType.Monster)
+                    {
+                        if (UnlockCells != null)
+                        {
+                            UnlockCells.Invoke(this);
+                        }
+                    }
                     Content.sprite = null;
                     HealthStatusText.gameObject.SetActive(false);
                     AttackStatusText.gameObject.SetActive(false);
                     _baseCell = new CellBase();
                 }
             }
+
+            GameManager.Instance.Board.Validate();
         }
 
         /// <summary>
