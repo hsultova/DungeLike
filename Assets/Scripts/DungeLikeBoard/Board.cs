@@ -31,6 +31,7 @@ namespace Assets.Scripts
             firstTile.SetEnterType();
             firstTile.Content.sprite = Images.Find(pair => pair.CellType.Equals(firstTile.GetCellType())).Image;
             firstTile.Foreground.SetActive(false);
+            SetSelectableCells(firstTile);
 
             int keyIndex = Random.Range(0, transform.childCount);
             Tile keyTile = Tiles[keyIndex];
@@ -47,7 +48,7 @@ namespace Assets.Scripts
                 tile.SetCellType();
                 tile.Content.sprite = Images.Find(pair => pair.CellType.Equals(tile.GetCellType())).Image;
                 tile.OpenCell += OnOpenCell;
-                tile.UnlockCells += OnUnlockCells;
+                tile.MonsterKilled += OnMonsterKilled;
             }
         }
 
@@ -73,12 +74,12 @@ namespace Assets.Scripts
             }
         }
 
-        private void OnOpenCell()
+        private void OnOpenCell(Tile tile)
         {
-            SetSelectableCells();
+            SetSelectableCells(tile);
         }
 
-        private void OnUnlockCells(Tile tile)
+        private void OnMonsterKilled(Tile tile)
         {
             if (tile.GetCellType() != CellType.Monster)
                 return;
@@ -95,18 +96,12 @@ namespace Assets.Scripts
         /// <summary>
         /// Sets cells to be selectable if they are neighbours to enter cell or open cell
         /// </summary>
-        public void SetSelectableCells()
+        private void SetSelectableCells(Tile tile)
         {
-            foreach (var tile in Tiles)
-            {
-                if (tile.GetCellType() == CellType.Enter || tile.IsOpen)
-                {
-                    SetSelectableCell(tile.transform.position, Vector3.up);
-                    SetSelectableCell(tile.transform.position, Vector3.down);
-                    SetSelectableCell(tile.transform.position, Vector3.right);
-                    SetSelectableCell(tile.transform.position, Vector3.left);
-                }
-            }
+            SetSelectableCell(tile.transform.position, Vector3.up);
+            SetSelectableCell(tile.transform.position, Vector3.down);
+            SetSelectableCell(tile.transform.position, Vector3.right);
+            SetSelectableCell(tile.transform.position, Vector3.left);
         }
 
         private void SetSelectableCell(Vector3 position, Vector3 direction)

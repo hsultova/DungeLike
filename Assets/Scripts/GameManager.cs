@@ -32,7 +32,6 @@ namespace Assets.Scripts
         void Start()
         {
             Board.InitializeBoard();
-            Board.SetSelectableCells();
         }
 
         // Update is called once per frame

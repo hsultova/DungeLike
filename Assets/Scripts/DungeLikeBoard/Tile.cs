@@ -38,8 +38,8 @@ namespace Assets.Scripts
         /// <summary>
         /// Callback invoked when a cell is selected
         /// </summary>
-        public Action OpenCell;
-        public Action<Tile> UnlockCells;
+        public Action<Tile> OpenCell;
+        public Action<Tile> MonsterKilled;
 
         private void OnMouseDown()
         {
@@ -53,7 +53,7 @@ namespace Assets.Scripts
 
                 if (OpenCell != null)
                 {
-                    OpenCell.Invoke();
+                    OpenCell.Invoke(this);
                 }
 
                 if (GetCellType() == CellType.Monster)
@@ -69,9 +69,9 @@ namespace Assets.Scripts
                 {
                     if (GetCellType() == CellType.Monster)
                     {
-                        if (UnlockCells != null)
+                        if (MonsterKilled != null)
                         {
-                            UnlockCells.Invoke(this);
+                            MonsterKilled.Invoke(this);
                         }
                     }
                     Content.sprite = null;
