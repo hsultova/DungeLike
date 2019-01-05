@@ -6,5 +6,13 @@
         {
             Type = CellType.Key;
         }
+
+        public override void DoAction()
+        {
+            base.DoAction();
+
+            GameManager.Instance.Level++;
+            GameManager.Instance.Initialize();
+        }
     }
 }

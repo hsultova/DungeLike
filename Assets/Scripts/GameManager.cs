@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Assets.Scripts
 {
@@ -9,11 +10,11 @@ namespace Assets.Scripts
         public Player Player;
         public List<Sprite> MonsterImages;
         public List<DungeLikeHelper.ImageValuePair> MoneyImages;
+        public Text LevelText;
 
         public static GameManager Instance { get; private set; }
 
         public int Level = 1;
-
         public System.Random Random = new System.Random();
 
         private void Awake()
@@ -31,13 +32,19 @@ namespace Assets.Scripts
         // Use this for initialization
         void Start()
         {
-            Board.InitializeBoard();
+            Initialize();
         }
 
         // Update is called once per frame
         void Update()
         {
 
+        }
+
+        public void Initialize()
+        {
+            LevelText.text = "Level: " + Level;
+            Board.InitializeBoard();
         }
     }
 }

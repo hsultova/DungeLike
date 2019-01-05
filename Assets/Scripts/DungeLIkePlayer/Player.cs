@@ -11,6 +11,8 @@ namespace Assets.Scripts
         public Text AttackText;
         public Text ManaText;
         public Text MoneyText;
+        public SpriteRenderer Weapon;
+        public SpriteRenderer Item;
 
         public Status Health { get; set; }
         public Status Attack { get; set; }

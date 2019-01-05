@@ -2,15 +2,21 @@
 {
     public class ItemCell : CellBase
     {
-        public ItemCell()
+        private readonly Player _player = GameManager.Instance.Player;
+        private readonly Tile _tile;
+
+        public ItemCell(Tile tile)
         {
+            _tile = tile;
             Type = CellType.Item;
         }
 
         public override void DoAction()
         {
             base.DoAction();
-            // TODO: Add item to the equip
+            //Add item to the equip
+
+            _player.Item.sprite = _tile.Content.sprite;
         }
     }
 }

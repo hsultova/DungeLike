@@ -18,6 +18,8 @@ namespace Assets.Scripts
         /// </summary>
         public void InitializeBoard()
         {
+            Clear();
+
             var index = 0;
             Tiles = new Tile[transform.childCount];
             foreach (Transform child in transform)
@@ -27,12 +29,14 @@ namespace Assets.Scripts
                 index++;
             }
 
+            //TODO: Generate first tile on random position ana rename it to enter tile
             Tile firstTile = Tiles[0];
             firstTile.SetEnterType();
             firstTile.Content.sprite = Images.Find(pair => pair.CellType.Equals(firstTile.GetCellType())).Image;
             firstTile.Foreground.SetActive(false);
             SetSelectableCells(firstTile);
 
+            //TODO: Check keyIndex to be different of first tile index
             int keyIndex = Random.Range(0, transform.childCount);
             Tile keyTile = Tiles[keyIndex];
             keyTile.SetKeyType();
@@ -49,6 +53,27 @@ namespace Assets.Scripts
                 tile.Content.sprite = Images.Find(pair => pair.CellType.Equals(tile.GetCellType())).Image;
                 tile.OpenCell += OnOpenCell;
                 tile.MonsterKilled += OnMonsterKilled;
+            }
+        }
+
+        /// <summary>
+        /// Clears the board. Sets it to initial state
+        /// </summary>
+        public void Clear()
+        {
+            foreach (var tile in Tiles)
+            {
+                tile.Content.sprite = null;
+                tile.Foreground.SetActive(true);
+                tile.Foreground.GetComponent<SpriteRenderer>().color = Color.grey;
+                tile.Locked.SetActive(false);
+
+                tile.HealthStatusText.gameObject.SetActive(false);
+                tile.AttackStatusText.gameObject.SetActive(false);
+
+                tile.IsOpen = false;
+                tile.IsSelectable = false;
+                tile.IsLocked = false;
             }
         }
 
@@ -79,6 +104,10 @@ namespace Assets.Scripts
             SetSelectableCells(tile);
         }
 
+        /// <summary>
+        /// Callback when a monster is killed. Unlock all cells around the monster.
+        /// </summary>
+        /// <param name="tile">Tile with killed monster</param>
         private void OnMonsterKilled(Tile tile)
         {
             if (tile.GetCellType() != CellType.Monster)
@@ -104,6 +133,9 @@ namespace Assets.Scripts
             SetSelectableCell(tile.transform.position, Vector3.left);
         }
 
+        /// <summary>
+        /// Sets cell to be possible for selection. Change foreground color.
+        /// </summary>
         private void SetSelectableCell(Vector3 position, Vector3 direction)
         {
             Tile tile = GetNeighbourTile(position, direction);
@@ -118,6 +150,11 @@ namespace Assets.Scripts
             }
         }
 
+        /// <summary>
+        /// Locks cell by given direction
+        /// </summary>
+        /// <param name="position">Tile position around which tiles should be locked</param>
+        /// <param name="direction">Direction to the tile to be locked</param>
         private void LockCell(Vector3 position, Vector3 direction)
         {
             Tile tile = GetNeighbourTile(position, direction);
@@ -129,6 +166,11 @@ namespace Assets.Scripts
                 tile.Locked.SetActive(true);
         }
 
+        /// <summary>
+        /// Unlocks cell by given direction
+        /// </summary>
+        /// <param name="position">Tile position around which tiles should be unlocked</param>
+        /// <param name="direction">Direction to the tile to be unlocked</param>
         private void UnlockCell(Vector3 position, Vector3 direction)
         {
             Tile tile = GetNeighbourTile(position, direction);
@@ -140,6 +182,12 @@ namespace Assets.Scripts
                 tile.Locked.SetActive(false);
         }
 
+        /// <summary>
+        /// Gets neighbour tile by direction
+        /// </summary>
+        /// <param name="position">Tile position</param>
+        /// <param name="direction">Direction to get tile</param>
+        /// <returns>Neighbour tile if found otherwise null</returns>
         private Tile GetNeighbourTile(Vector3 position, Vector3 direction)
         {
             RaycastHit hit;

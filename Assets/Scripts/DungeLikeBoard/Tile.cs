@@ -112,7 +112,7 @@ namespace Assets.Scripts
             }
             if (HasChance(40, GameManager.Instance.Random))
             {
-                _baseCell = new ItemCell();
+                _baseCell = new ItemCell(this);
                 return;
             }
             if (HasChance(20, GameManager.Instance.Random))
@@ -122,7 +122,7 @@ namespace Assets.Scripts
             }
             if (HasChance(30, GameManager.Instance.Random))
             {
-                _baseCell = new WeaponCell();
+                _baseCell = new WeaponCell(this);
                 return;
             }
             if (HasChance(30, GameManager.Instance.Random))
