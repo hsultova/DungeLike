@@ -29,23 +29,27 @@ namespace Assets.Scripts
                 index++;
             }
 
-            //TODO: Generate first tile on random position ana rename it to enter tile
-            Tile firstTile = Tiles[0];
-            firstTile.SetEnterType();
-            firstTile.Content.sprite = Images.Find(pair => pair.CellType.Equals(firstTile.GetCellType())).Image;
-            firstTile.Foreground.SetActive(false);
-            SetSelectableCells(firstTile);
+            int enterIndex = Random.Range(0, transform.childCount);
+            Tile enterTile = Tiles[enterIndex];
+            enterTile.SetEnterType();
+            enterTile.Content.sprite = Images.Find(pair => pair.CellType.Equals(enterTile.GetCellType())).Image;
+            enterTile.Foreground.SetActive(false);
+            SetSelectableCells(enterTile);
 
-            //TODO: Check keyIndex to be different of first tile index
-            int keyIndex = Random.Range(0, transform.childCount);
+            int keyIndex;
+            do
+            {
+                keyIndex = Random.Range(0, transform.childCount);
+            }
+            while (keyIndex == enterIndex);
             Tile keyTile = Tiles[keyIndex];
             keyTile.SetKeyType();
             keyTile.Content.sprite = Images.Find(pair => pair.CellType.Equals(keyTile.GetCellType())).Image;
             keyTile.OpenCell += OnOpenCell;
 
-            for (int i = 1; i < Tiles.Length; i++)
+            for (int i = 0; i < Tiles.Length; i++)
             {
-                if (i == keyIndex)
+                if (i == keyIndex || i == enterIndex)
                     continue;
 
                 var tile = Tiles[i];
