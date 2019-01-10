@@ -1,4 +1,6 @@
-﻿namespace Assets.Scripts.DungeLikeBoard
+﻿using System.Linq;
+
+namespace Assets.Scripts.DungeLikeBoard
 {
     public class KeyCell :CellBase
     {
@@ -10,9 +12,12 @@
         public override void DoAction()
         {
             base.DoAction();
-
-            GameManager.Instance.Level++;
-            GameManager.Instance.Initialize();
+            var enterTile = GameManager.Instance.Board.Tiles.SingleOrDefault(tile => tile.GetCellType() == CellType.Enter);
+            if(enterTile != null)
+            {
+                enterTile.Content.sprite = GameManager.Instance.Board.UnlockedDoor;
+                enterTile.IsOpen = true;
+            }
         }
     }
 }

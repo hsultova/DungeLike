@@ -79,6 +79,10 @@ namespace Assets.Scripts
                     _baseCell = new CellBase();
                 }
             }
+            else if(GetCellType() == CellType.Enter && IsOpen)
+            {
+                _baseCell.DoAction();
+            }
 
             GameManager.Instance.Board.Validate();
         }

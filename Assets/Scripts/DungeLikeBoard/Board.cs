@@ -6,6 +6,7 @@ namespace Assets.Scripts
     public class Board : MonoBehaviour
     {
         public List<DungeLikeHelper.ImageDictionary> Images;
+        public Sprite UnlockedDoor;
 
         /// <summary>
         /// Tiles which are UI representation of the cells
