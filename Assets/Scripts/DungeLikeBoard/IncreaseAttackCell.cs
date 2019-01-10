@@ -15,7 +15,7 @@
             //Increase player attack
             int attackForIncrease = 1;
             _player.Attack.AddValue(attackForIncrease);
-            _player.AttackText.text = _player.Attack.Value.ToString();
+            _player.UpdateAttackText();
         }
     }
 }

@@ -10,6 +10,7 @@ namespace Assets.Scripts
         public Player Player;
         public List<Sprite> MonsterImages;
         public List<DungeLikeHelper.ImageValuePair> MoneyImages;
+        public List<DungeLikeHelper.ImageValuePair> WeaponImages;
         public Text LevelText;
 
         public static GameManager Instance { get; private set; }

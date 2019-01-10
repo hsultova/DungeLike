@@ -19,6 +19,13 @@ namespace Assets.Scripts
         public Status Mana { get; set; }
         public Status Money { get; set; }
 
+        private int _lastWeaponAttack = 0;
+        public int LastWeaponAttack
+        {
+            get { return _lastWeaponAttack; }
+            set { _lastWeaponAttack = value; }
+        }
+
         // Use this for initialization
         void Start()
         {
@@ -38,6 +45,11 @@ namespace Assets.Scripts
         void Update()
         {
 
+        }
+
+        public void UpdateAttackText()
+        {
+            AttackText.text = Attack.Value.ToString();
         }
     }
 }

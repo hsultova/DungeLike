@@ -2807,6 +2807,15 @@ MonoBehaviour:
     Image: {fileID: 21305226, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
   - Value: 20
     Image: {fileID: 21305228, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  WeaponImages:
+  - Value: 2
+    Image: {fileID: 21305830, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  - Value: 3
+    Image: {fileID: 21305720, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  - Value: 2
+    Image: {fileID: 21305948, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
+  - Value: 1
+    Image: {fileID: 21306062, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
   LevelText: {fileID: 1515079554}
   Level: 1
 --- !u!1 &1803212659

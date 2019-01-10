@@ -3,15 +3,15 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    public class Money
+    public class Weapon
     {
         public Sprite Visual { get; private set; }
         public int Value { get; private set; }
 
-        public Money()
+        public Weapon()
         {
-            int randomImageIndex = Random.Range(0, GameManager.Instance.MoneyImages.Count);
-            var pair = GameManager.Instance.MoneyImages.ElementAt(randomImageIndex);
+            int randomImageIndex = Random.Range(0, GameManager.Instance.WeaponImages.Count);
+            var pair = GameManager.Instance.WeaponImages.ElementAt(randomImageIndex);
             Visual = pair.Image;
             Value = pair.Value;
         }
