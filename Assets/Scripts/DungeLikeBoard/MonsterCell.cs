@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -35,6 +36,11 @@ namespace Assets.Scripts
             UpdateStatusText();
             _player.Health.RemoveValue(_monster.Attack.Value);
             _player.HealthText.text = _player.Health.Value.ToString();
+
+            if (_player.IsPlayerDead())
+            {
+                SceneManager.LoadScene(1);
+            }
         }
 
         public override bool CanRemoveContent()

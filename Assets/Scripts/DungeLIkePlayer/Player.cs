@@ -51,5 +51,10 @@ namespace Assets.Scripts
         {
             AttackText.text = Attack.Value.ToString();
         }
+
+        public bool IsPlayerDead()
+        {
+            return Health.Value <= Health.Minimum;
+        }
     }
 }
