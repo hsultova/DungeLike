@@ -39,7 +39,7 @@ namespace Assets.Scripts
 
             if (_player.IsPlayerDead())
             {
-                SceneManager.LoadScene(1);
+                SceneManager.LoadScene(2);
             }
         }
 

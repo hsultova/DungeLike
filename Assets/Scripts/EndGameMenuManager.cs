@@ -18,6 +18,6 @@ public class EndGameMenuManager : MonoBehaviour
 
     public void OnBackToMainMenuClicked()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(0);
     }
 }
