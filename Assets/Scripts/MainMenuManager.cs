@@ -34,8 +34,9 @@ public class MainMenuManager : MonoBehaviour
 
     }
 
-    public void OnPlayButtonClicked()
+    public void OnNewGameButtonClicked()
     {
+        IsContinue = false;
         SceneManager.LoadScene("Main");
     }
 
