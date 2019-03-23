@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 23045165485231404}
   - component: {fileID: 102389834262264022}
   m_Layer: 0
-  m_Name: MoneyToAddText
+  m_Name: GoldToAddText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -679,7 +679,7 @@ MonoBehaviour:
   Locked: {fileID: 1341575157982280}
   HealthStatusText: {fileID: 102526695712797518}
   AttackStatusText: {fileID: 102935446430600288}
-  MoneyToAddText: {fileID: 102389834262264022}
+  GoldToAddText: {fileID: 102389834262264022}
   HealthToAddText: {fileID: 102583057199796250}
   ManaToAddText: {fileID: 102261886824200928}
 --- !u!212 &212233737079124254
@@ -891,7 +891,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21305770, guid: 8a91ea6f64785b747b69d337948a089a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0

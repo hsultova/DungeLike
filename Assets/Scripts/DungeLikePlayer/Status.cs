@@ -2,6 +2,8 @@
 {
     public class Status
     {
+        private int gold;
+
         public Status(int value, int maximum, int minimum)
         {
             Value = value;

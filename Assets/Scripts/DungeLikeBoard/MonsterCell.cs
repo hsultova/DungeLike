@@ -39,7 +39,11 @@ namespace Assets.Scripts
 
             if (_player.IsPlayerDead())
             {
-                SceneManager.LoadScene(2);
+                GameManager.Instance.DungeLikeStatisticData.TotalGold += _player.Gold.Value;
+                GameManager.Instance.SaveStatisticData();
+                MainMenuManager.CanContinue = false;
+                //BinarySaver.SaveData(new DungeLikeCurrentGameData());
+                SceneManager.LoadScene("EndGame");
             }
         }
 
@@ -50,7 +54,14 @@ namespace Assets.Scripts
 
         private bool IsMonsterDead()
         {
-            return _monster.Health.Value <= _monster.Health.Minimum;
+            bool isMonsterDead = _monster.Health.Value <= _monster.Health.Minimum;
+            if (isMonsterDead)
+            {
+                GameManager.Instance.DungeLikeStatisticData.TotalMonsterKilled++;
+                GameManager.Instance.DungeLikeStatisticData.CurrentMonsterKilled++;
+            }
+
+            return isMonsterDead;
         }
     }
 }

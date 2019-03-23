@@ -13,7 +13,7 @@ namespace Assets.Scripts
         Key,
         HealthPotion,
         ManaPotion,
-        Money,
+        Gold,
         Item,
         Spell,
         Shop,
@@ -28,7 +28,7 @@ namespace Assets.Scripts
         public GameObject Locked;
         public TextMesh HealthStatusText;
         public TextMesh AttackStatusText;
-        public TextMesh MoneyToAddText;
+        public TextMesh GoldToAddText;
         public TextMesh HealthToAddText;
         public TextMesh ManaToAddText;
 
@@ -106,7 +106,7 @@ namespace Assets.Scripts
             }
             if (HasChance(20, GameManager.Instance.Random))
             {
-                _baseCell = new MoneyCell(this);
+                _baseCell = new GoldCell(this);
                 return;
             }
             if (HasChance(10, GameManager.Instance.Random))

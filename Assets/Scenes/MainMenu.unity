@@ -249,7 +249,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 50
+  m_Text: '0
+
+'
 --- !u!222 &45649241
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -359,6 +361,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 41d1939129fe78943b9909650b720b1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  KillsText: {fileID: 1450520113}
+  DeathsText: {fileID: 45649240}
+  FloorsText: {fileID: 1259480970}
+  TotalGoldText: {fileID: 554175561}
+  Continue: {fileID: 1434141400}
 --- !u!4 &496383703
 Transform:
   m_ObjectHideFlags: 0
@@ -562,7 +569,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '1120
+  m_Text: '0
+
 
 '
 --- !u!222 &554175562
@@ -1138,7 +1146,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 120
+  m_Text: '0
+
+'
 --- !u!222 &1259480971
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1370,7 +1380,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1434141401}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 496383702}
+        m_MethodName: OnContinueButtonClicked
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1434141401
@@ -1474,7 +1495,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 20
+  m_Text: '0
+
+'
 --- !u!222 &1450520114
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1590,7 +1613,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.60748273, g: 0.674344, b: 0.7794118, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -1599,7 +1622,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 61.8
   orthographic: 0
   orthographic size: 5
   m_Depth: -1

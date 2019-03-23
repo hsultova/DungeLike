@@ -231,7 +231,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.70177335, g: 0.76627976, b: 0.86764705, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
@@ -664,7 +664,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '4
+  m_Text: '0
+
 
 '
 --- !u!222 &813106866
@@ -814,7 +815,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: '23
+  m_Text: '0
 
 '
 --- !u!222 &1095726871
@@ -959,6 +960,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d27be68a4f086e94688c2da2461eb52b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LevelReached: {fileID: 813106865}
+  MonstersKilled: {fileID: 1095726870}
+  CellsOpened: {fileID: 2030747265}
 --- !u!224 &1418750403
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1231,7 +1235,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 93
+  m_Text: 0
 --- !u!222 &2030747266
 CanvasRenderer:
   m_ObjectHideFlags: 0

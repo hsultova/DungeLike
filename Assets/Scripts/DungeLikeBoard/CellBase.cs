@@ -14,7 +14,7 @@
         /// </summary>
         public virtual void DoAction()
         {
-
+            GameManager.Instance.DungeLikeStatisticData.CellsOpened++;
         }
 
         /// <summary>
