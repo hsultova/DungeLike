@@ -3,6 +3,8 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+		//Cell - physical representation/ game object
+		//Tile - Logic representation
     public class Board : MonoBehaviour
     {
         public List<DungeLikeHelper.ImageDictionary> Images;
@@ -81,6 +83,11 @@ namespace Assets.Scripts
                 tile.IsLocked = false;
             }
         }
+
+
+		//Logic layer between board and player. Cell's coordinates -> update state
+
+		//Move all tile events, logic 
 
         /// <summary>
         /// Validate board

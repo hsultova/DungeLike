@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
+//Rename to TileType
     public enum CellType
     {
         Enter,
@@ -23,6 +24,7 @@ namespace Assets.Scripts
 
     public class Tile : MonoBehaviour
     {
+		//Physical -> Logical -> Context
         public SpriteRenderer Content;
         public GameObject Foreground;
         public GameObject Locked;
@@ -32,7 +34,7 @@ namespace Assets.Scripts
         public TextMesh HealthToAddText;
         public TextMesh ManaToAddText;
 
-        private CellBase _baseCell;
+        private CellBase _baseCell; // Instead coordinates
 
         public bool IsOpen { get; set; }
         public bool IsSelectable { get; set; }

@@ -1,5 +1,6 @@
 ﻿namespace Assets.Scripts
 { 
+	//Maybe should be TileBase
     public class CellBase
     {
         public CellBase()
